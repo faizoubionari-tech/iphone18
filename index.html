@@ -1033,12 +1033,7 @@ footer a:hover{ color:var(--paper); }
   <div class="section-seam seam-to-dark"></div>
   <div class="voix-head">
     <span class="eyebrow">Voix</span>
-    <h2 style="font-size:clamp(1.5rem,4.2vw,2.2rem); font-weight:420; margin-top:.7rem;">Ils ont déjà acheté chez nous.<br>Ils attendent la suite.</h2>
-    <p class="voix-note"><!-- MODIFIER ICI : TÉMOIGNAGES CLIENTS RÉELS --> Exemples de témoignages ci-dessous — à remplacer par de vrais avis clients vérifiés avant mise en ligne.</p>
-  </div>
-  <div class="voix-marquee">
-    <div class="marquee-row row1" id="mq-row1"></div>
-    <div class="marquee-row row2" id="mq-row2"></div>
+    <h2 style="font-size:clamp(1.5rem,4.2vw,2.2rem); font-weight:420; margin-top:.7rem;">Avis clients à venir.</h2>
   </div>
 </section>
 
@@ -1078,11 +1073,12 @@ footer a:hover{ color:var(--paper); }
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Alertes en avant-première</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Offres réservées</span>
     </div>
-    <form class="offre-form" id="offre-form">
+    <form class="offre-form" id="offre-form" action="https://0da3c730.sibforms.com/serve/MUIFAEN3ZMOxjtBYlhpr4BU-31iwQ1ptWq8BhsfMD9wfRsPLCCjiB0nryDkBjpNfuDNHMclwv95H9PHX7NltMCTXtwFbwhmBb6NfTCo5Py5WtOybwgznlBd_L2J2nCtAOqPhOsJASUh1F6XjaZ_q5IWbqk-uwKS5xJuW7jDPB_8EJu7XiFgNiVpwMQtYfvfhpMCiKhYefD0DOJPIiA==" method="POST" target="brevo-hidden-iframe" novalidate>
       <label for="offre-email" class="visually-hidden">Adresse email</label>
-      <input type="email" id="offre-email" placeholder="votre@email.com" required>
+      <input type="email" name="EMAIL" id="offre-email" placeholder="votre@email.com" required>
       <button type="submit">Recevoir ma recommandation</button>
     </form>
+    <iframe name="brevo-hidden-iframe" id="brevo-hidden-iframe" style="display:none;" title="Confirmation d'inscription"></iframe>
     <p class="offre-confirm" id="offre-confirm">Merci — votre recommandation arrive par email.</p>
     <div class="offre-buy">
       <a class="btn btn-solid" style="background:var(--paper); color:var(--ink);" id="buy-pro" href="#">Acheter le Pro</a>
@@ -1375,41 +1371,6 @@ function openDoor(){
 secretOpenBtn.addEventListener('click', openDoor);
 doorPanel.addEventListener('click', openDoor);
 
-/* ---------- voix : témoignages (marquee) ---------- */
-/* MODIFIER ICI : remplacer par de vrais témoignages clients vérifiés */
-const testimonials = [
-  {name:"Fabrice A.", prev:"Ex-16 Pro", quote:"J'ai pris le 16 Pro chez vous à sa sortie, aucun souci depuis. Le Pro Max Dark Cherry m'intrigue sérieusement.", c:'cherry'},
-  {name:"Yasmine T.", prev:"Ex-17 Pro", quote:"Deuxième commande cette année. La livraison a toujours été nickel, j'attends de voir l'autonomie annoncée.", c:'blue'},
-  {name:"Bérénice K.", prev:"Ex-17 Pro", quote:"Mon 17 Pro tourne encore très bien. Si la batterie du Pro Max tient vraiment plus longtemps, je repasse commande direct.", c:'silver'},
-  {name:"Junior D.", prev:"Ex-16 Pro Max", quote:"Service client réactif la dernière fois, ça compte. Je regarde de près le nouveau module photo.", c:'black'},
-  {name:"Carine M.", prev:"Ex-17 Pro", quote:"J'étais sceptique au début, mais l'appareil reçu correspondait exactement à la description. Le Bleu clair me tente pour cette fois.", c:'blue'},
-  {name:"Steve A.", prev:"Ex-15 Pro", quote:"Trois ans que j'achète mes iPhone ici. Toujours du sérieux. J'attends surtout de voir le prix confirmé.", c:'cherry'},
-  {name:"Nadège H.", prev:"Ex-16 Pro", quote:"Le 16 Pro m'a bluffée niveau photo. Curieuse de voir ce que l'ouverture variable va changer.", c:'silver'},
-  {name:"Willy G.", prev:"Ex-17 Pro Max", quote:"Rien à redire sur ma dernière commande. Je patiente pour comparer Pro et Pro Max avant de trancher.", c:'black'},
-  {name:"Rosine B.", prev:"Ex-17 Pro", quote:"Mon mari a pris le 17 Pro Max, moi le 17 Pro. On hésite déjà tous les deux à changer cette année.", c:'blue'},
-  {name:"Armand F.", prev:"Ex-16 Pro Max", quote:"Emballage soigné, délai respecté. J'ai hâte de voir le Dark Cherry en vrai avant de me décider.", c:'cherry'},
-  {name:"Chantal N.", prev:"Ex-15 Pro", quote:"Toujours satisfaite depuis mon premier achat en 2023. Cette fois je vise le Pro Max pour le zoom.", c:'silver'},
-  {name:"Prisca O.", prev:"Ex-15 Pro", quote:"J'utilise encore mon iPhone 15 Pro sans problème, mais l'autonomie du nouveau modèle m'intéresse beaucoup.", c:'black'},
-  {name:"Herman L.", prev:"Ex-17 Pro", quote:"Bon rapport confiance-prix la dernière fois. Je regarde surtout la puce A20 Pro pour le montage vidéo.", c:'blue'},
-  {name:"Aïcha S.", prev:"Ex-16 Pro Max", quote:"Mon 16 Pro Max n'a jamais bronché. S'il y a une vraie avancée sur la caméra, je fonce.", c:'cherry'},
-  {name:"Landry K.", prev:"Ex-17 Pro Max", quote:"Déjà deux achats ici sans le moindre accroc. J'attends l'ouverture des précommandes pour le Pro Max.", c:'silver'},
-  {name:"Odile P.", prev:"Ex-17 Pro", quote:"La finition Argent de mon 17 Pro est encore impeccable. Je regarde ce que donne le Noir Sidéral cette année.", c:'black'},
-  {name:"Freddy T.", prev:"Ex-16 Pro", quote:"Rapide, fiable, comme la dernière fois. Le zoom 5× du Pro Max a toute mon attention.", c:'cherry'},
-  {name:"Sandrine A.", prev:"Ex-17 Pro", quote:"J'ai recommandé AJagency à toute ma famille après mon achat. On attend tous le nouveau modèle ensemble.", c:'blue'},
-  {name:"Kevin H.", prev:"Ex-17 Pro", quote:"Le 17 Pro m'a duré sans souci. Cette fois je veux voir la vraie différence de poids avant de choisir.", c:'silver'},
-  {name:"Grace M.", prev:"Ex-16 Pro Max", quote:"Ma commande précédente est arrivée avant la date annoncée. J'espère la même chose pour le lancement du 18.", c:'black'}
-];
-const colorHex = { cherry:'#a5455a', blue:'#7f96b8', silver:'#aaa79e', black:'#6b6b6e' };
-function tcardHTML(t){
-  return `<div class="tcard"><div class="tname"><span>${t.name}</span><span class="dot" style="background:${colorHex[t.c]}"></span></div><span class="prev">${t.prev}</span><p>${t.quote}</p></div>`;
-}
-const half = Math.ceil(testimonials.length/2);
-const rowA = testimonials.slice(0, half);
-const rowB = testimonials.slice(half);
-const row1 = document.getElementById('mq-row1');
-const row2 = document.getElementById('mq-row2');
-row1.innerHTML = rowA.map(tcardHTML).join('') + rowA.map(tcardHTML).join('');
-row2.innerHTML = rowB.map(tcardHTML).join('') + rowB.map(tcardHTML).join('');
 
 /* ---------- communauté : lightbox ---------- */
 const lightbox = document.getElementById('lightbox');
@@ -1434,11 +1395,10 @@ document.querySelectorAll('.matiere-item-head').forEach(head=>{
   });
 });
 
-/* ---------- offre : formulaire email (démo — brancher à un service réel) ---------- */
+/* ---------- offre : formulaire email (connecté à Brevo) ---------- */
 document.getElementById('offre-form').addEventListener('submit', (e)=>{
-  e.preventDefault();
   document.getElementById('offre-confirm').classList.add('show');
-  e.target.reset();
+  setTimeout(()=> e.target.reset(), 300);
 });
 </script>
 </body>
