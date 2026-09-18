@@ -1073,12 +1073,14 @@ footer a:hover{ color:var(--paper); }
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Alertes en avant-première</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Offres réservées</span>
     </div>
-    <form class="offre-form" id="offre-form" action="https://0da3c730.sibforms.com/serve/MUIFAEN3ZMOxjtBYlhpr4BU-31iwQ1ptWq8BhsfMD9wfRsPLCCjiB0nryDkBjpNfuDNHMclwv95H9PHX7NltMCTXtwFbwhmBb6NfTCo5Py5WtOybwgznlBd_L2J2nCtAOqPhOsJASUh1F6XjaZ_q5IWbqk-uwKS5xJuW7jDPB_8EJu7XiFgNiVpwMQtYfvfhpMCiKhYefD0DOJPIiA==" method="POST" target="brevo-hidden-iframe" novalidate>
+    <form class="offre-form" id="offre-form" action="https://assets.mailerlite.com/jsonp/2642101/forms/198896390211897087/subscribe" method="POST" target="mailerlite-hidden-iframe" novalidate>
       <label for="offre-email" class="visually-hidden">Adresse email</label>
-      <input type="email" name="EMAIL" id="offre-email" placeholder="votre@email.com" required>
+      <input type="email" name="fields[email]" id="offre-email" placeholder="votre@email.com" required>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
       <button type="submit">Recevoir ma recommandation</button>
     </form>
-    <iframe name="brevo-hidden-iframe" id="brevo-hidden-iframe" style="display:none;" title="Confirmation d'inscription"></iframe>
+    <iframe name="mailerlite-hidden-iframe" id="mailerlite-hidden-iframe" style="display:none;" title="Confirmation d'inscription"></iframe>
     <p class="offre-confirm" id="offre-confirm">Merci — votre recommandation arrive par email.</p>
     <div class="offre-buy">
       <a class="btn btn-solid" style="background:var(--paper); color:var(--ink);" id="buy-pro" href="#">Acheter le Pro</a>
@@ -1395,7 +1397,7 @@ document.querySelectorAll('.matiere-item-head').forEach(head=>{
   });
 });
 
-/* ---------- offre : formulaire email (connecté à Brevo) ---------- */
+/* ---------- offre : formulaire email (connecté à MailerLite) ---------- */
 document.getElementById('offre-form').addEventListener('submit', (e)=>{
   document.getElementById('offre-confirm').classList.add('show');
   setTimeout(()=> e.target.reset(), 300);
